@@ -1,6 +1,5 @@
 const inpSearch = document.getElementById('search-input');
 const ulSuggestion = document.getElementById('suggestions-list');
-const liShowAll = document.getElementById('show-all');
 const selectStatus = document.getElementById('status');
 
 // Danh sách các từ vựng
@@ -15,14 +14,13 @@ main();
 function main() {
     renderWordList();
     inpSearch.addEventListener("input", handleInputChange);
-    liShowAll.addEventListener('click', () => renderWordList());
     selectStatus.addEventListener("change", handleFilterChange);
 }
 
 function handleFilterChange(event) {
     currentFilter = event.target.value;
     renderWordList(currentSearch, currentFilter);
-  }
+}
 
 function renderWordList(word = '', status = 'all') {
     console.log(word);
@@ -38,6 +36,8 @@ function renderWordList(word = '', status = 'all') {
     if (word != '') {
         wordListShow = wordListShow.filter((vocab) => vocab.word.toLowerCase().includes(word));
     }
+
+    console.log(wordListShow);
 
 
     clearWordList();

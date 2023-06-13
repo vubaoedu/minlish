@@ -34,6 +34,7 @@ function fillData(index) {
         inpStatus.value = vocab.status;
     }
 }
+
 function clearData() {
     inpWord.value = '';
     inpWordType.value = '';
@@ -42,8 +43,6 @@ function clearData() {
     inpReference.value = '';
     inpStatus.value = '';
 }
-
-
 
 function addVocab() {
     const data = getData();
@@ -68,22 +67,18 @@ function addVocab() {
 }
 
 function updateVocab(index) {
-    if (index >= 0) {
+    if (index >= 0 && index < wordList.length) {
         vocab = wordList[index];
-        if (vocab.word != inpWord.value) {
-            vocab.word = inpWord.value;
-            vocab.type = inpWordType.value;
-            vocab.meaning = inpMeaning.value;
-            vocab.note = inpNote.value;
-            vocab.reference = inpReference.value;
-            vocab.updatedAt = new Date();
-            const jsonWordList = JSON.stringify(wordList);
-            localStorage.setItem('wordList', jsonWordList);
-            alert('Cập nhật thành công.');
-        }
-        else {
-            alert(`Đã tồn tại từ vựng này.`);
-        }
+        vocab.word = inpWord.value;
+        vocab.type = inpWordType.value;
+        vocab.meaning = inpMeaning.value;
+        vocab.note = inpNote.value;
+        vocab.reference = inpReference.value;
+        vocab.status = inpStatus.value;
+        vocab.updatedAt = new Date();
+        const jsonWordList = JSON.stringify(wordList);
+        localStorage.setItem('wordList', jsonWordList);
+        alert('Cập nhật thành công.');
     }
     else {
         alert('Cập nhật thất bại.');
