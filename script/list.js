@@ -51,22 +51,25 @@ function renderWordList(word = '', status = 'all') {
         word.classList.add('word');
         word.textContent = vocabulary.word;
 
+        const type = document.createElement('div');
+        type.innerHTML = `<span class="type">${vocabulary.type || ''}</span>`;
+
+        const pronounce = document.createElement('div');
+        pronounce.innerHTML = `<span class="pronounce">${vocabulary.pronounce || ''}</span>`;
+
         const meaning = document.createElement('div');
         meaning.classList.add('meaning');
-        meaning.textContent = `Meaning: ${vocabulary.meaning}`;
-
-        const type = document.createElement('div');
-        type.innerHTML = `Type: <span class="type">${vocabulary.type}</span>`;
+        meaning.textContent = `${vocabulary.meaning || ''}`;
 
         const note = document.createElement('div');
         note.classList.add('note');
-        note.textContent = `Note: ${vocabulary.note}`;
+        note.textContent = `${vocabulary.note || ''}`;
 
-        const createdAt = document.createElement('div');
-        createdAt.textContent = `Created at: ${vocabulary.createdAt}`;
+        // const createdAt = document.createElement('div');
+        // createdAt.textContent = `Created at: ${vocabulary.createdAt}`;
 
-        const updatedAt = document.createElement('div');
-        updatedAt.textContent = `Updated at: ${vocabulary.updatedAt}`;
+        // const updatedAt = document.createElement('div');
+        // updatedAt.textContent = `Updated at: ${vocabulary.updatedAt}`;
 
         const reference = document.createElement('a');
         reference.classList.add('action');
@@ -84,8 +87,9 @@ function renderWordList(word = '', status = 'all') {
         spanUpdate.addEventListener('click', updateVocab);
 
         li.appendChild(word);
-        li.appendChild(meaning);
+        li.appendChild(pronounce);
         li.appendChild(type);
+        li.appendChild(meaning);
         li.appendChild(note);
         li.appendChild(reference);
         // li.appendChild(createdAt);

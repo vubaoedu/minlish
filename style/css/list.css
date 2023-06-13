@@ -90,6 +90,7 @@ body {
 .container {
   max-width: 600px;
   margin: 0 auto;
+  padding: 2%;
 }
 .container .search {
   position: relative;
@@ -133,22 +134,22 @@ body {
   padding: 10px;
   overflow: auto;
 }
+.container ul li div {
+  margin-bottom: 1rem;
+}
 .container ul li .word {
   font-weight: bold;
-  font-size: 18px;
-  margin-bottom: 5px;
+  font-size: 1.5em;
 }
 .container ul li .meaning {
   font-style: italic;
-  color: #6c757d;
-  margin-bottom: 5px;
+  font-weight: bold;
 }
 .container ul li .type {
   font-weight: bold;
-  color: #007bff;
 }
 .container ul li .note {
-  margin-bottom: 5px;
+  color: #6c757d;
 }
 .container ul li .action {
   margin-left: 1rem;
