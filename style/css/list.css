@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  color: #007bff;
+}
+
+footer {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+input[type=text],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  font-size: 1em;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.required {
+  color: rgb(255, 76, 112);
+}
+
+input[type=button] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background-color: #0062cc;
+}
+
+nav {
+  max-width: 600px;
+  padding: 1rem;
+  margin: 0 auto;
+  position: sticky;
+  top: 0px;
+  background-color: white;
+}
+
+.link-list {
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+  padding: 0;
+}
+
+.link-list li {
+  margin-left: 2rem;
+}
+
+.link-list a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+body {
+  overflow: hidden;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.container .search {
+  position: relative;
+}
+.container .filter {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.container .filter #status {
+  width: 25%;
+}
+.container h1 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.container ul {
+  list-style-type: none;
+  padding: 0;
+}
+.container ul#suggestions-list {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  margin-top: 5px;
+}
+.container ul#suggestions-list li {
+  background-color: white;
+  cursor: pointer;
+}
+.container ul#suggestions-list li:hover {
+  color: #007bff;
+}
+.container ul li {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  overflow: auto;
+}
+.container ul li .word {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.container ul li .meaning {
+  font-style: italic;
+  color: #6c757d;
+  margin-bottom: 5px;
+}
+.container ul li .type {
+  font-weight: bold;
+  color: #007bff;
+}
+.container ul li .note {
+  margin-bottom: 5px;
+}
+.container ul li .action {
+  margin-left: 1rem;
+  color: #007bff;
+  cursor: pointer;
+  float: right;
+}
+.container #wordList {
+  overflow: auto;
+  height: 75vh;
+}
+
+/*# sourceMappingURL=list.css.map */

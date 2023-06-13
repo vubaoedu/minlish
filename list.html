@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vocabulary List</title>
+  <link rel="stylesheet" type="text/css" href="./style/css/list.css">
+</head>
+
+<body>
+  <nav>
+    <ul class="link-list">
+      <li><a href="./form.html">Add</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="search">
+      <input type="text" id="search-input" placeholder="Search">
+      <ul id="suggestions-list"></ul>
+    </div>
+    <div class="filter">
+      <select id="status" name="status">
+        <option value="all" selected>Show all</option>
+        <option value="new">New</option>
+        <option value="day">Day Memory</option>
+        <option value="week">Week Memory</option>
+        <option value="month">Month Memory</option>
+        <option value="quarter">Quarter Memory</option>
+        <option value="year">Year Memory</option>
+    </select>
+    </div>
+    <h1>Vocabulary  List</h1>
+    <ul id="wordList"></ul>
+  </div>
+
+  <footer>&copy; <a href="https://kmin.edu.vn">Kmin Academy</a></footer>
+  <script src="./script/list.js"></script>
+</body>
+
+</html>

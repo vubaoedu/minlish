@@ -1,0 +1,26 @@
+@use 'global' as *;
+
+nav {
+    max-width: 600px;
+    padding: 1rem;
+    margin: 0 auto;
+    position: sticky;
+    top: 0px;
+    background-color: white;
+}
+
+.link-list {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    padding: 0;
+}
+
+.link-list li {
+    margin-left: 2rem;
+}
+
+.link-list a {
+    color: $primary-color;
+    text-decoration: none;
+}
