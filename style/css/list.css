@@ -157,7 +157,7 @@ body {
   cursor: pointer;
   float: right;
 }
-.container #wordList {
+.container #vocabList {
   overflow: auto;
   height: 75vh;
 }

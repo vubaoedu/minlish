@@ -1,0 +1,1 @@
+export const vocabFields = ['word', 'wordType', 'pronounce', 'meaning', 'note', 'reference', 'status'];
