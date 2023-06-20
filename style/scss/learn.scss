@@ -1,0 +1,40 @@
+@use 'global' as *;
+@use 'nav';
+
+main {
+    min-height: 330px;
+    padding: 3rem;
+    margin-bottom: 1rem;
+    background-color: aliceblue;
+    text-align: center;
+
+    #main-content {
+        font-size: 3em;
+    }
+    #sub-content {
+        font-size: 1.2em;
+    }
+}
+
+.actions {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    &.three {
+        input {
+            width: 33.3%;
+        }
+    }
+    &.two {
+        input {
+            width: 50%;
+        }
+    }
+    input {
+        display: block;
+        padding: 1rem;
+        font-size: 1.5em;
+    }
+   
+}

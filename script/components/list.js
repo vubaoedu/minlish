@@ -87,7 +87,7 @@ function handleDeleteItem() {
     const index = Number(this.parentElement.getAttribute('index'));
     
     if (index >= 0 && index < state.dataSource.length)
-        state.dataSource.splice(indexDelete, 1);
+        state.dataSource.splice(index, 1);
 
     render();
 }
@@ -99,8 +99,8 @@ function handleUpdateItem() {
             currentIndex: index
         }
         const searchParam = new URLSearchParams(data);
-        const quesryString = searchParam.toString();
-        window.location.href = state.page + '.html?' + quesryString;
+        const queryString = searchParam.toString();
+        window.location.href = state.page + '.html?' + queryString;
     }
 }
 function handleDetailItem() {

@@ -1,5 +1,9 @@
+import { tables } from "./schema.js";
+
 const data = {
     vocabList: [],
+    phraseList: [],
+    sentenceList: [],
     currentIndex: -1,
 };
 
@@ -10,24 +14,43 @@ export function loadData(dataName) {
         data[dataName] = [];
     else {
         if (data[dataName].length > 0) {
-            const sample = data[dataName][0];
-            const dateKeys = [];
-            for (let key in sample) {
-                if (!isNaN(Date.parse(sample[key])))
-                    dateKeys.push(key);
-            }
-            for (let item of data[dataName]) {
-                for (let key of dateKeys) {
-                    item[key] = new Date(item[key]);
+            for (const item of data[dataName]) {
+                for (const field of tables[dataName]) {
+                    if (field.type == 'date') {
+                        item[field.name] = new Date(item[field.name]);
+                    }
+                    else if (field.type == 'number') {
+                        item[field.name] = Number(item[field.name]);
+                    }
+                    else if (field.type == 'boolean') {
+                        item[field.name] = Boolean(item[field.name]);
+                    }
                 }
             }
         }
     }
 }
 
-export function getData(key) {
+export function getData(key, filter = null) {
+    
     if (key in data)
-        return data[key]
+    {
+        if (filter) {
+            const returnData =  data[key].filter((item) => {
+                for (const criteria in filter) {
+                    if (filter[criteria].toString().toLowerCase() == 'all')
+                        continue;
+                    if (filter[criteria].toString().toLowerCase() != item[criteria].toString().toLowerCase())
+                        return false;
+                }
+                return true;
+            });
+            return returnData;
+        }
+        else {
+            return data[key]
+        }
+    }
     return null;
 }
 
@@ -39,7 +62,6 @@ export function setData(key, value) {
 
 export function addItemToList(item, listName) {
     data[listName].push(item);
-    console.log(data[listName]);
 }
 
 export function updateItemList(item, index, listName) {
@@ -51,7 +73,6 @@ export function updateItemList(item, index, listName) {
 }
 
 export function saveData(key) {
-    console.log(data);
     if (key in data) {
         const json = JSON.stringify(data[key]);
         localStorage.setItem(key, json);

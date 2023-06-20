@@ -123,89 +123,36 @@ nav {
   color: white;
 }
 
-body {
-  overflow: hidden;
+main {
+  min-height: 330px;
+  padding: 3rem;
+  margin-bottom: 1rem;
+  background-color: aliceblue;
+  text-align: center;
+}
+main #main-content {
+  font-size: 3em;
+}
+main #sub-content {
+  font-size: 1.2em;
 }
 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2%;
-}
-.container .search {
-  position: relative;
-}
-.container .filter {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: flex-end;
-}
-.container .filter #status {
-  width: 25%;
-}
-.container h1 {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.container input#learn {
-  display: block;
-  min-width: 8rem;
-  margin: 20px auto;
-  margin-top: 10px;
-}
-.container ul {
-  list-style-type: none;
-  padding: 0;
-}
-.container ul#suggestions-list {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  position: absolute;
-  width: 100%;
-  background-color: white;
-  margin-top: 5px;
-}
-.container ul#suggestions-list li {
-  background-color: white;
-  cursor: pointer;
-}
-.container ul#suggestions-list li:hover {
-  color: #007bff;
-}
-.container ul li {
-  background-color: #f8f9fa;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  padding: 10px;
-  overflow: auto;
-}
-.container ul li div {
+.actions {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
-.container ul li .word {
-  font-weight: bold;
+.actions.three input {
+  width: 33.3%;
+}
+.actions.two input {
+  width: 50%;
+}
+.actions input {
+  display: block;
+  padding: 1rem;
   font-size: 1.5em;
 }
-.container ul li .meaning {
-  font-style: italic;
-  font-weight: bold;
-}
-.container ul li .type {
-  font-weight: bold;
-}
-.container ul li .note {
-  color: #6c757d;
-}
-.container ul li .action {
-  margin-left: 1rem;
-  color: #007bff;
-  cursor: pointer;
-  float: right;
-}
-.container #vocabList {
-  overflow: auto;
-  height: 75vh;
-}
 
-/*# sourceMappingURL=list.css.map */
+/*# sourceMappingURL=learn.css.map */

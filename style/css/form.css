@@ -4,8 +4,9 @@
 }
 
 body {
+  max-width: 600px;
   font-family: "Roboto", sans-serif;
-  margin: 0;
+  margin: 0 auto;
 }
 
 ul {
@@ -59,28 +60,67 @@ input[type=button]:hover {
 }
 
 nav {
-  max-width: 600px;
-  padding: 1rem;
-  margin: 0 auto;
-  position: sticky;
-  top: 0px;
-  background-color: white;
+  padding: 10px;
 }
 
-.link-list {
+#nav {
+  list-style: none;
+  font-weight: bold;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
-  list-style-type: none;
-  padding: 0;
+  /* Bring the nav above everything else--uncomment if needed.
+  position: relative;
+  z-index: 5;
+  */
 }
 
-.link-list li {
-  margin-left: 2rem;
+#nav > li {
+  margin-right: 20px;
+  position: relative;
+  background-color: transparent;
 }
 
-.link-list a {
+#nav a {
+  display: block;
+  padding: 5px;
   color: #007bff;
   text-decoration: none;
+}
+
+/*--- DROPDOWN ---*/
+#nav ul {
+  padding: 0;
+  background-color: #f9f9f9;
+  list-style: none;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 20;
+}
+
+#nav ul li {
+  padding-top: 1px; /* Introducing a padding between the li and the a give the illusion spaced items */
+}
+
+#nav ul a {
+  display: block;
+  padding: 15px;
+  white-space: nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+  text-align: left;
+}
+
+#nav li:hover ul { /* Display the dropdown on hover */
+  display: block;
+}
+
+#nav li:hover ul a { /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
+  text-decoration: none;
+}
+
+#nav li:hover ul li a:hover { /* Here we define the most explicit hover states--what happens when you hover each individual link. */
+  background-color: #007bff;
+  color: white;
 }
 
 .container {

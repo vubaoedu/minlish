@@ -29,12 +29,13 @@ export function createSearch(idSearchInput, idSuggestionElement, criteria = '', 
 export function handleInputChange(event) {
     const suggestionElement = getElement(idElements.idSuggestionElement);
     state.currentSearch = event.target.value.toLowerCase();
-    if (state.currentSearch != '') {
-        const matchedItem = state.dataSource.filter((item) =>
-            item.word.toLowerCase().includes(state.currentSearch)
+    const {currentSearch, criteria, dataSource} = state;
+    if (currentSearch != '') {
+        const matchedItem = dataSource.filter((item) =>
+            item[criteria].toLowerCase().includes(currentSearch)
         );
 
-        showSuggestions(matchedItem, state.keyShow);
+        showSuggestions(matchedItem);
     }
     else {
         suggestionElement.innerHTML = "";
@@ -42,7 +43,7 @@ export function handleInputChange(event) {
 
 }
 
-function showSuggestions(items, key) {
+function showSuggestions(items) {
     const suggestionElement = getElement(idElements.idSuggestionElement);
     suggestionElement.innerHTML = "";
 

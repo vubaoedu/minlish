@@ -51,6 +51,7 @@ export function input(isCreation = true) {
     for (let id in ui.inputElements) {
         obj[id] = ui.inputElements[id].value;
     }
+    obj['id'] = state.dataSource.length;
     if (isCreation)
         obj['createdAt'] = new Date();
     obj['updatedAt'] = new Date();
@@ -69,7 +70,6 @@ export function clear(isShowDefaultValue = true) {
     }
     if (isShowDefaultValue) {
         for (let id in state.defaultValue) {
-            console.log(ui.inputElements[id]);
             ui.inputElements[id].value = state.defaultValue[id];
         }
     }
@@ -104,7 +104,6 @@ export function addItem() {
 
     if (indexFinded == -1) {
         addItemToList(newItem, dataSourceName);
-        console.log(dataSource);
         clear();
         alert(`Đã thêm thành công.`);
     }

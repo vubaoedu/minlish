@@ -1,26 +1,155 @@
 @use 'global' as *;
 
-nav {
-    max-width: 600px;
-    padding: 1rem;
-    margin: 0 auto;
-    position: sticky;
-    top: 0px;
-    background-color: white;
-}
+// nav {
+//     max-width: 600px;
+//     padding: 1rem;
+//     margin: 0 auto;
+//     position: sticky;
+//     top: 0px;
+//     background-color: white;
+// }
 
-.link-list {
+// .link-list {
+//     display: flex;
+//     justify-content: flex-end;
+//     list-style-type: none;
+//     padding: 0;
+// }
+
+// .link-list li {
+//     margin-left: 2rem;
+// }
+
+// .link-list a {
+//     color: $primary-color;
+//     text-decoration: none;
+// }
+
+// $nav-background-color: #fff;
+// $nav-hover-background-color: #6b0c36;
+
+// .link-list {
+//     list-style: none;
+//     font-weight: bold;
+//     margin-bottom: 10px;
+//     float: left;
+//     width: 100%;
+
+//     /* Bring the nav above everything else--uncomment if needed.
+//   position: relative;
+//   z-index: 5;
+//   */
+
+//     li {
+//         float: left;
+//         margin-right: 10px;
+//         position: relative;
+
+//         a {
+//             display: block;
+//             padding: 5px;
+//             color: #fff;
+//             background-color: $nav-background-color;
+//             text-decoration: none;
+
+//             &:hover {
+//                 color: #fff;
+//                 background-color: $nav-hover-background-color;
+//                 text-decoration: underline;
+//             }
+//         }
+//     }
+
+//     /*--- DROPDOWN ---*/
+//     ul {
+//         background-color: #fff;
+//         background: rgba(255, 255, 255, 0);
+//         list-style: none;
+//         position: absolute;
+//         left: -9999px;
+//     }
+
+//     ul li {
+//         padding-top: 1px;
+//         float: none;
+//     }
+
+//     ul a {
+//         white-space: nowrap;
+//     }
+
+//     li:hover ul {
+//         left: 0;
+//     }
+
+//     li:hover a {
+//         background-color: $nav-hover-background-color;
+//         text-decoration: underline;
+//     }
+
+//     li:hover ul a {
+//         text-decoration: none;
+//     }
+
+//     li:hover ul li a:hover {
+//         background-color: $nav-background-color;
+//     }
+// }
+
+nav {
+    padding: 10px;
+}
+#nav {
+    list-style: none;
+    font-weight: bold;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
-    list-style-type: none;
-    padding: 0;
+    /* Bring the nav above everything else--uncomment if needed.
+    position: relative;
+    z-index: 5;
+    */
 }
-
-.link-list li {
-    margin-left: 2rem;
+#nav>li {
+    margin-right: 20px;
+    position: relative;
+    background-color: transparent;
 }
-
-.link-list a {
+#nav a {
+    display: block;
+    padding: 5px;
     color: $primary-color;
     text-decoration: none;
+}
+
+/*--- DROPDOWN ---*/
+#nav ul {
+    padding: 0;
+    background-color: #f9f9f9;;
+    list-style: none;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 20;
+}
+#nav ul li {
+    padding-top: 1px; /* Introducing a padding between the li and the a give the illusion spaced items */
+    
+}
+#nav ul a {
+    display: block;
+    padding: 15px;
+    white-space: nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+    text-align: left;
+}
+#nav li:hover ul { /* Display the dropdown on hover */
+    display: block;
+    
+}
+#nav li:hover ul a { /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
+    text-decoration: none;
+}
+#nav li:hover ul li a:hover { /* Here we define the most explicit hover states--what happens when you hover each individual link. */
+    background-color: $primary-color;
+    color: white;
 }

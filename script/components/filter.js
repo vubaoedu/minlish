@@ -26,3 +26,7 @@ export function handleFilterChange(event) {
     filter[criteria] = state.currentFilter;
     state.renderFn(null, filter);
 }
+
+export function getCurrentFilter() {
+    return state.currentFilter;
+}
