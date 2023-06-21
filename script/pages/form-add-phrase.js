@@ -7,7 +7,7 @@ import { getFieldNameList } from "../data/schema.js";
 function main() {
     loadData('phraseList');
     const phraseList = getData('phraseList');
-    const fieldNameList = getFieldNameList('phrase');
+    const fieldNameList = getFieldNameList('phraseList');
     createForm(fieldNameList, [], ['btnAdd', 'btnUpdate'], phraseList, 'phraseList', 'phrase', {status: 'New'});
     window.addEventListener("unload", () => saveData('phraseList'));
 }
