@@ -220,6 +220,8 @@ function showContent(keyMain, keySub = [], showMeaning = false) {
   const subContentElement = getElement("sub-content");
   const meaningContentElement = getElement("meaning-content");
   mainContentElement.innerHTML = dataSource[currentIndex][keyMain];
+  console.log('dataSource', dataSource);
+  console.log('currentIndex', currentIndex);
   subContentElement.innerHTML = "";
   if (showMeaning) {
     let meaningContent = "";
