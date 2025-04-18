@@ -128,13 +128,20 @@ main {
   padding: 3rem;
   margin-bottom: 1rem;
   background-color: aliceblue;
-  text-align: center;
 }
 main #main-content {
-  font-size: 3em;
+  font-size: 2em;
+  margin: 0;
 }
 main #sub-content {
   font-size: 1.2em;
+  margin: 0;
+}
+main #meaning-content {
+  line-height: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
 }
 
 .actions {

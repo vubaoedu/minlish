@@ -1,3 +1,4 @@
+import { deleteWord } from "../data/data-firebase.js";
 import { createUI, getElement } from "./ui.js";
 
 let idElements = {
@@ -38,11 +39,23 @@ export function render(search = null, filter = null) {
     clearList();
 
     listShow.forEach((item, index) => {
-        const itemShow = {...item};
+        let itemShow = {...item};
+        console.log(itemShow);
+        // console.log(keyShow);
+        const keysToDelete = [];
         for (let key in itemShow) {
             if (!keyShow.find((x) => x == key))
-                delete itemShow[key];
+                keysToDelete.push(key);
         }
+        // console.log(keysToDelete);
+        const newObj = Object.keys(itemShow)
+            .filter(key => !keysToDelete.includes(key)) // chỉ giữ key KHÔNG bị xoá
+            .reduce((acc, key) => {
+                acc[key] = itemShow[key];
+                return acc;
+            }, {});
+        itemShow = newObj;
+        // console.log(newObj);
         const li = createItemElement(itemShow, [
             {text: 'Delete', handler: handleDeleteItem},
             {text: 'Update', handler: handleUpdateItem},
@@ -84,6 +97,9 @@ function createItemElement(item, actions = []) {
 }
 
 function handleDeleteItem() {
+    // console.log(this.parentElement.children[0].innerHTML);
+    deleteWord(this.parentElement.children[0].innerHTML);
+
     const index = Number(this.parentElement.getAttribute('index'));
     
     if (index >= 0 && index < state.dataSource.length)

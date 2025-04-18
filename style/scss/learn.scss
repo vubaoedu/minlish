@@ -6,13 +6,20 @@ main {
     padding: 3rem;
     margin-bottom: 1rem;
     background-color: aliceblue;
-    text-align: center;
 
     #main-content {
-        font-size: 3em;
+        font-size: 2em;
+        margin: 0;
     }
     #sub-content {
         font-size: 1.2em;
+        margin: 0;
+    }
+    #meaning-content {
+        line-height: 2em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2em;
     }
 }
 
