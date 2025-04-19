@@ -30,42 +30,47 @@ async function main() {
   const status = params.get("status");
 
   function startAutoPlay() {
-    if (state.intervalId) return; // tránh tạo nhiều interval
-    state.intervalId = setInterval(() => {
-      goToNextWord();
-    }, 5000); // 5 giây
+    (async function loop() {
+      while (state.autoPlay) {
+        await goToNextWord();
+      }
+    })();
   }
-
+  
   function stopAutoPlay() {
-    clearInterval(state.intervalId);
-    state.intervalId = null;
+    state.autoPlay = false;
   }
+  
 
-  function goToNextWord() {
+
+  async function goToNextWord() {
     state.currentIndex++;
     if (state.currentIndex >= state.dataSource.length) {
       state.currentIndex = 0;
     }
+  
     show(dataName);
-
+  
     const word = state.dataSource[state.currentIndex]["word"];
     let textToSpeak = [
-        { text: word, lang: "en-US" },
-      ];
+      { text: word, lang: "en-US" },
+    ];
+  
     if (state.autoPlay == true) {
-      if (state.isFront) show(dataName, true);
-      else show(dataName, false);
-      state.isFront = !state.isFront;
+      show(dataName, true);
       const meaning = state.dataSource[state.currentIndex]["meaning"];
       const example = state.dataSource[state.currentIndex]["example"];
       textToSpeak = [
         ...textToSpeak,
         { text: meaning, lang: "vi-VN" },
         { text: example, lang: "en-US" },
-      ]
+      ];
     }
-    speakSequence(textToSpeak);
+  
+    await speakSequence(textToSpeak);         // chờ đọc xong
+    await new Promise(r => setTimeout(r, 3000)); // đợi thêm 3 giây
   }
+  
 
   if (dataName) {
     await loadData(dataName);
@@ -76,7 +81,7 @@ async function main() {
 
         const previousBtn = getElement("previous");
         previousBtn.addEventListener("click", () => {
-          state.isFront = true;
+          state.isFront = false;
           state.currentIndex--;
           if (state.currentIndex < 0)
             state.currentIndex = state.dataSource.length - 1;
@@ -91,7 +96,7 @@ async function main() {
 
         const flipBtn = getElement("flip");
         flipBtn.addEventListener("click", () => {
-          if (state.isFront) show(dataName, true);
+          if (!state.isFront) show(dataName, true);
           else show(dataName, false);
           state.isFront = !state.isFront;
         });
@@ -143,7 +148,6 @@ async function main() {
     .getElementById("auto-play-toggle")
     .addEventListener("change", (e) => {
       state.autoPlay = e.target.checked;
-      console.log('e.target.checked', e.target.checked);
       if (state.autoPlay) {
         startAutoPlay();
       } else {
@@ -191,29 +195,39 @@ function speak(text) {
 }
 
 function speakSequence(texts) {
-  if (!Array.isArray(texts) || texts.length === 0) return;
+  return new Promise((resolve) => {
+    if (!Array.isArray(texts) || texts.length === 0) {
+      resolve();
+      return;
+    }
 
-  let index = 0;
+    let index = 0;
 
-  function speakNext() {
-    if (index >= texts.length) return;
+    function speakNext() {
+      if (index >= texts.length) {
+        resolve(); // đọc xong hết thì resolve
+        return;
+      }
 
-    const { text, lang } = texts[index];
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang;
-    utterance.rate = 1;
+      const { text, lang } = texts[index];
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.rate = 1;
 
-    utterance.onend = () => {
-      index++;
-      speakNext(); // đọc đoạn tiếp theo sau khi đoạn trước kết thúc
-    };
+      utterance.onend = () => {
+        index++;
+        speakNext();
+      };
 
-    speechSynthesis.speak(utterance);
-  }
+      speechSynthesis.speak(utterance);
+    }
 
-  speechSynthesis.cancel();
-  speakNext();
+    speechSynthesis.cancel();
+    speakNext();
+  });
 }
+
+
 function showContent(keyMain, keySub = [], showMeaning = false) {
   const { dataSource, currentIndex } = state;
   const mainContentElement = getElement("main-content");

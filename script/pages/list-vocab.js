@@ -17,7 +17,6 @@ function main() {
  
     getWordList()
     .then((vocabList) => {
-        // console.log("All words: ", vocabList);
         createSearch('search-input', 'suggestions-list', 'word', vocabList, render, 'word');
         createFilter('status', vocabList, render);
         createLearnBtn('vocabList');

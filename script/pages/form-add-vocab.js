@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
               case "string":
                 value = "";
                 if (name == 'status')
-                  value = 'day';
+                  value = 'new';
                 break;
               case "number":
                 value = idx + 1; // index tăng dần

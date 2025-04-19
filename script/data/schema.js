@@ -9,6 +9,7 @@ export const tables = {
         { name: 'example', type: 'string', inUI: true},
         { name: 'collocation', type: 'string', inUI: true},
         { name: 'relatedWord', type: 'string', inUI: true},
+        { name: 'category', type: 'string', inUI: false},
         { name: 'status', type: 'string',  inUI: true},
         { name: 'createdAt', type: 'date',  inUI: false},
         { name: 'updatedAt', type: 'date',  inUI: false},
