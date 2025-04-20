@@ -78,14 +78,9 @@ export async function deleteWord(word) {
   const snapshot = await getDocs(q);
 
   for (const d of snapshot.docs) {
-    console.log("Xoá:", d.id);
     await deleteDoc(doc(db, "vocabulary", d.id));
   }
 
-  // snapshot.forEach(async (d) => {
-  //   console.log(d.id);
-  //   await deleteDoc(doc(db, "vocabulary", d.id));
-  // });
 }
 
 /**
@@ -109,8 +104,6 @@ export async function updateWordByIndex(index, fieldName, newValue) {
       [fieldName]: newValue,
       updatedAt: new Date(), // Optional: tự động cập nhật thời gian sửa
     });
-
-    console.log(`Đã cập nhật "${fieldName}" của từ index ${index} thành:`, newValue);
   } catch (error) {
     console.error("Lỗi khi cập nhật:", error);
   }

@@ -17,8 +17,8 @@ export function createForm(idInputs = [], idOutputs = [], idButtons = [], dataSo
     createUI(idInputs, idOutputs, idButtons);
     const addButton = getElement(idButtons[0]);
     addButton.addEventListener("click", addItem);
-    const updateButton = getElement(idButtons[1]);
-    updateButton.addEventListener("click", updateItem);
+    // const updateButton = getElement(idButtons[1]);
+    // updateButton.addEventListener("click", updateItem);
 
     const queryString = window.location.search;
     const params = new URLSearchParams(queryString);
@@ -37,7 +37,7 @@ export function createForm(idInputs = [], idOutputs = [], idButtons = [], dataSo
     }
     else {
         changeDisplay('btnAdd', 'block');
-        changeDisplay('btnUpdate', 'none');
+        // changeDisplay('btnUpdate', 'none');
     }
         
     
@@ -51,10 +51,10 @@ export function input(isCreation = true) {
     for (let id in ui.inputElements) {
         obj[id] = ui.inputElements[id].value;
     }
-    obj['id'] = state.dataSource.length;
-    if (isCreation)
-        obj['createdAt'] = new Date();
-    obj['updatedAt'] = new Date();
+    // obj['id'] = state.dataSource.length;
+    // if (isCreation)
+    //     obj['createdAt'] = new Date();
+    // obj['updatedAt'] = new Date();
     return obj;
 }
 
@@ -65,14 +65,14 @@ export function output(obj) {
 }
 
 export function clear(isShowDefaultValue = true) {
-    for (let id in ui.inputElements) {
-        ui.inputElements[id].value = '';
-    }
-    if (isShowDefaultValue) {
-        for (let id in state.defaultValue) {
-            ui.inputElements[id].value = state.defaultValue[id];
-        }
-    }
+    // for (let id in ui.inputElements) {
+    //     ui.inputElements[id].value = '';
+    // }
+    // if (isShowDefaultValue) {
+    //     for (let id in state.defaultValue) {
+    //         ui.inputElements[id].value = state.defaultValue[id];
+    //     }
+    // }
 }
 
 export function changeDisplay(id, display) {
@@ -105,7 +105,6 @@ export function addItem() {
     if (indexFinded == -1) {
         addItemToList(newItem, dataSourceName);
         clear();
-        alert(`Đã thêm thành công.`);
     }
     else {
         output(dataSource[indexFinded]);

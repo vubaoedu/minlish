@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinLish</title>
+    <link rel="stylesheet" href="./style/css/form.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <ul id="nav">
+          <li>
+            <a href="form-add-vocab.html">Add</a>
+            <!-- <ul>
+              <li><a href="form-add-vocab.html">Add a vocabulary</a></li>
+              <li><a href="form-add-phrase.html">Add a phrase</a></li>
+              <li><a href="form-add-sentence.html">Add a sentence</a></li>
+            </ul> -->
+          </li>
+          <li>
+            <a href="list-vocab.html">My English</a>
+            <!-- <ul>
+              <li><a href="list-vocab.html">Vocabularies</a></li>
+              <li><a href="list-phrase.html">Phrases</a></li>
+              <li><a href="list-sentence.html">Sentences</a></li>
+            </ul> -->
+          </li>
+        </ul>
+      </nav>
+    <div class="container">
+        <h1>Vocabulary Form</h1>
+        <form>
+            <div class="add-word-list">
+                <label for="excelFile">Upload excel</label>
+                <input type="file" id="excelFile" />
+                
+                </br></br>
+            </div>
+            
+            <div class="form-group">
+                <label for="word">English Word<span class="required">*</span></label>
+                <input type="text" id="word" name="word" required>
+            </div>
+
+            <div class="form-group">
+                <label for="wordType">Word Type</label>
+                <select id="wordType" name="wordType">
+                    <option value="noun">Noun</option>
+                    <option value="verb">Verb</option>
+                    <option value="adjective">Adjective</option>
+                    <option value="adverb">Adverb</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pronounce">Pronounce</label>
+                <input type="text" id="pronounce" name="pronounce">
+            </div>
+            <div class="form-group">
+                <label for="meaning">Vietnamese Meaning</label>
+                <input type="text" id="meaning" name="meaning">
+            </div>
+
+            <div class="form-group">
+                <label for="note">Note</label>
+                <textarea id="note" name="note"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="reference">Reference</label>
+                <input type="text" id="reference" name="reference">
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="new" selected>New</option>
+                    <option value="day">Day Memory</option>
+                    <option value="week">Week Memory</option>
+                    <option value="month">Month Memory</option>
+                    <option value="quarter">Quarter Memory</option>
+                    <option value="year">Year Memory</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <input type="button" value="Thêm từ" id="btnAdd">
+                <input type="button" value="Cập nhật" id="btnUpdate">
+            </div>
+
+            
+        </form>
+    </div>
+    <script src="./script/pages/form-add-vocab.js" type="module"></script>
+</body>
+
+</html>

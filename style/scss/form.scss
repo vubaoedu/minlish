@@ -25,3 +25,97 @@ form {
   }
 }
 
+// .tab-buttons {
+//   display: flex;
+//   justify-content: center;
+//   gap: 10px;
+//   margin-bottom: 20px;
+
+//   button {
+//     background: none;
+//     border: none;
+//     padding: 10px 20px;
+//     font-size: 16px;
+//     cursor: pointer;
+//     position: relative;
+//     color: #555;
+//     font-weight: 500;
+//     border-bottom: 2px solid transparent;
+//     transition: all 0.3s ease;
+
+//     &:hover {
+//       color: #000;
+//       border-bottom: 2px solid #999;
+//     }
+
+//     &.active {
+//       color: #000;
+//       font-weight: 600;
+//       border-bottom: 2px solid #007BFF;
+//     }
+//   }
+// }
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  button {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    color: #555;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #000;
+      border-bottom: 1px solid #aaa;
+    }
+
+    &.active {
+      color: #000;
+      border-bottom: 1px solid #007BFF; // Gạch chân nổi bật
+    }
+  }
+}
+
+.custom-file-upload {
+  // position: relative;
+  // display: inline-block;
+
+  input[type="file"] {
+    display: none;
+  }
+
+  label {
+    display: inline-block;
+    padding: 10px 20px;
+    border: solid 1px #007BFF;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #007BFF;
+      color: white;
+    }
+  }
+
+  #file-name {
+    font-size: 14px;
+    color: #333;
+    font-style: italic;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+

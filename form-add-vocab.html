@@ -2,98 +2,137 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MinLish</title>
-    <link rel="stylesheet" href="./style/css/form.css">
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Vocabulary - MinLish</title>
+    <link rel="stylesheet" href="./style/css/form.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <nav>
         <ul id="nav">
-          <li>
-            <a href="form-add-vocab.html">Add</a>
-            <!-- <ul>
-              <li><a href="form-add-vocab.html">Add a vocabulary</a></li>
-              <li><a href="form-add-phrase.html">Add a phrase</a></li>
-              <li><a href="form-add-sentence.html">Add a sentence</a></li>
-            </ul> -->
-          </li>
-          <li>
-            <a href="list-vocab.html">My English</a>
-            <!-- <ul>
-              <li><a href="list-vocab.html">Vocabularies</a></li>
-              <li><a href="list-phrase.html">Phrases</a></li>
-              <li><a href="list-sentence.html">Sentences</a></li>
-            </ul> -->
-          </li>
+            <li>
+                <a href="form-add-vocab.html">Add</a>
+                <!-- <ul>
+          <li><a href="form-add-vocab.html">Add a vocabulary</a></li>
+          <li><a href="form-add-phrase.html">Add a phrase</a></li>
+          <li><a href="form-add-sentence.html">Add a sentence</a></li>
+        </ul> -->
+            </li>
+            <li>
+                <a href="list-vocab.html">My English</a>
+                <!-- <ul>
+          <li><a href="list-vocab.html">Vocabularies</a></li>
+          <li><a href="list-phrase.html">Phrases</a></li>
+          <li><a href="list-sentence.html">Sentences</a></li>
+        </ul> -->
+            </li>
         </ul>
-      </nav>
+    </nav>
+
     <div class="container">
-        <h1>Vocabulary Form</h1>
-        <form>
-            <div class="add-word-list">
-                <label for="excelFile">Upload excel</label>
-                <input type="file" id="excelFile" />
-                
-                </br></br>
-            </div>
+        <h1>Add Vocabulary</h1>
+
+        <div class="tab-buttons">
+            <button onclick="showTab('manual')" class="active">➕ Thêm 1 từ</button>
+            <button onclick="showTab('bulk')">📎 Thêm nhiều từ</button>
+        </div>
+
+        <!-- Form thêm 1 từ -->
+        <div id="manual" class="tab-content">
+            <form id="singleForm">
+                <div class="form-group">
+                    <label>Word*</label>
+                    <input type="text" name="word" id="word" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Word Type</label>
+                    <input type="text" name="wordType" id="wordType"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Pronunciation</label>
+                    <input type="text" name="pronunciation" id="pronunciation"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" name="description" id="description"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Meaning</label>
+                    <input type="text" name="meaning" id="meaning"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Note</label>
+                    <textarea name="note" rows="3" id="note"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Example</label>
+                    <textarea name="example" rows="3" id="example"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Collocation</label>
+                    <input type="text" name="collocation" id="collocation"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Related Word</label>
+                    <input type="text" name="relatedWord" id="relatedWord"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" name="category" id="category"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="button" value="Add" id="btnAdd" />
+                    <!-- <input type="button" value="Cập nhật" id="btnUpdate"> -->
+                </div>
+            </form>
+        </div>
+
+        <!-- Upload file Excel -->
+        <div id="bulk" class="tab-content" style="display: none">
+            <p>Chọn file Excel (.xlsx) để thêm nhiều từ. <a href="./sample-vocab.xlsx" download>⬇️ Tải file mẫu</a></p>
             
-            <div class="form-group">
-                <label for="word">English Word<span class="required">*</span></label>
-                <input type="text" id="word" name="word" required>
+            <!-- <input type="file" id="excelFile" /> -->
+            <div class="custom-file-upload">
+                <label for="excelFile">📎 Chọn file Excel</label>
+                <input type="file" id="excelFile" accept=".xlsx, .xls">
+                <span id="file-name">Chưa chọn file</span>
             </div>
-
-            <div class="form-group">
-                <label for="wordType">Word Type</label>
-                <select id="wordType" name="wordType">
-                    <option value="noun">Noun</option>
-                    <option value="verb">Verb</option>
-                    <option value="adjective">Adjective</option>
-                    <option value="adverb">Adverb</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="pronounce">Pronounce</label>
-                <input type="text" id="pronounce" name="pronounce">
-            </div>
-            <div class="form-group">
-                <label for="meaning">Vietnamese Meaning</label>
-                <input type="text" id="meaning" name="meaning">
-            </div>
-
-            <div class="form-group">
-                <label for="note">Note</label>
-                <textarea id="note" name="note"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="reference">Reference</label>
-                <input type="text" id="reference" name="reference">
-            </div>
-
-            <div class="form-group">
-                <label for="status">Status</label>
-                <select id="status" name="status">
-                    <option value="new" selected>New</option>
-                    <option value="day">Day Memory</option>
-                    <option value="week">Week Memory</option>
-                    <option value="month">Month Memory</option>
-                    <option value="quarter">Quarter Memory</option>
-                    <option value="year">Year Memory</option>
-                </select>
-            </div>
+            <input type="button" value="Add" id="addVocabFromFile" />
             
-            <div class="form-group">
-                <input type="button" value="Thêm từ" id="btnAdd">
-                <input type="button" value="Cập nhật" id="btnUpdate">
-            </div>
-
-            
-        </form>
+        </div>
     </div>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-buttons button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            if (tabName === 'manual') {
+                document.querySelector('.tab-buttons button:nth-child(1)').classList.add('active');
+                document.getElementById('manual').style.display = 'block';
+                document.getElementById('bulk').style.display = 'none';
+            } else {
+                document.querySelector('.tab-buttons button:nth-child(2)').classList.add('active');
+                document.getElementById('manual').style.display = 'none';
+                document.getElementById('bulk').style.display = 'block';
+            }
+        }
+    </script>
     <script src="./script/pages/form-add-vocab.js" type="module"></script>
 </body>
 

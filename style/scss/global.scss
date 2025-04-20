@@ -22,6 +22,7 @@ ul {
 
 a {
     text-decoration: none;
+    color: $primary-color;
 }
 
 h1 {
@@ -53,7 +54,13 @@ textarea {
     color: $warning-color;
 }
 
-input[type="button"] {
+div::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+input[type="button"], .confirm-btn-green {
     background-color: $primary-color;
     color: white;
     border: none;
@@ -61,8 +68,10 @@ input[type="button"] {
     border-radius: 3px;
     font-size: 16px;
     cursor: pointer;
+    float: right;
 }
 
-input[type="button"]:hover {
+
+input[type="button"]:hover, .confirm-btn-green:hover {
     background-color: darken($primary-color, 10%);
 }
