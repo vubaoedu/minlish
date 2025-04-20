@@ -5,13 +5,18 @@ let idElements = {
 };
 
 const state = {
-    currentFilter: 'all',
+    currentFilter: 'all', // status
+    categoryFilter: '',
     dataSource: null,
     renderFn: null,
+    
 };
 
-export function createFilter(idInputElement, dataSource = null, renderFn = null) {
+export function createFilter(idInputElement, currentFilter='all', categoryFilter='', dataSource = null, renderFn = null) {
+    console.log('currentFilter', currentFilter);
     idElements.idInputElement = idInputElement;
+    state.currentFilter = currentFilter;
+    state.categoryFilter = categoryFilter;
     state.dataSource = dataSource;
     state.renderFn = renderFn;
     createUI([idInputElement]);
@@ -29,4 +34,8 @@ export function handleFilterChange(event) {
 
 export function getCurrentFilter() {
     return state.currentFilter;
+}
+
+export function getCategoryFilter() {
+    return state.categoryFilter;
 }

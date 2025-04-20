@@ -26,8 +26,9 @@ async function main() {
   const queryString = window.location.search;
   const params = new URLSearchParams(queryString);
 
-  let dataName = params.get("dataName");
+  const dataName = params.get("dataName");
   const status = params.get("status");
+  const category = params.get("category");
 
   function startAutoPlay() {
     (async function loop() {
@@ -74,8 +75,13 @@ async function main() {
 
   if (dataName) {
     await loadData(dataName);
+    let currentFilter = {};
+    if (status)
+      currentFilter = {...currentFilter, status}; 
+    if (category)
+      currentFilter = {...currentFilter, category}; 
     if (status) {
-      state.dataSource = getData(dataName, { status: status });
+      state.dataSource = getData(dataName, currentFilter);
       if (state.dataSource.length > 0) {
         state.currentIndex = 0;
 
@@ -116,12 +122,19 @@ async function main() {
             newStaus = statusValueDomain[index - 1];
           }
           state.dataSource[state.currentIndex].status = newStaus;
-          updateWordByIndex(state.currentIndex, "status", newStaus);
+          const indexToUpdate = state.dataSource[state.currentIndex].index
+        
+          updateWordByIndex(indexToUpdate, "status", newStaus);
           nextBtn.click();
         });
 
         const rememberBtn = getElement("remember");
         rememberBtn.addEventListener("click", () => {
+          confetti({
+            particleCount: 150,
+            spread: 100,
+            origin: { y: 0.6 }
+          });
           let newStaus = state.dataSource[state.currentIndex].status;
           const statusValueDomain = valueDomain["status"];
           let index = -1;
@@ -135,10 +148,14 @@ async function main() {
             newStaus = statusValueDomain[index + 1];
           }
           state.dataSource[state.currentIndex].status = newStaus;
-          updateWordByIndex(state.currentIndex, "status", newStaus);
+          console.log('state.dataSource', state.dataSource);
+          const indexToUpdate = state.dataSource[state.currentIndex].index
+          console.log(newStaus);
+          updateWordByIndex(indexToUpdate, "status", newStaus);
+          
           nextBtn.click();
         });
-
+        nextBtn.click(); // Fix tạm
         show(dataName);
       }
     }
@@ -180,18 +197,6 @@ function show(dataName, showMeaing = false) {
       showContent("sentence", [], showMeaing);
       break;
   }
-}
-function speak(text) {
-  // Nếu đang đọc, dừng lại
-  if (speechSynthesis.speaking) {
-    speechSynthesis.cancel();
-  }
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
-  utterance.rate = 0.9; // tốc độ đọc chậm một chút cho dễ nghe
-
-  speechSynthesis.speak(utterance);
 }
 
 function speakSequence(texts) {
@@ -240,7 +245,7 @@ function showContent(keyMain, keySub = [], showMeaning = false) {
     for (const key of keySub) {
       if (dataSource[currentIndex][key] != "") {
         meaningContent +=
-          '<div><strong style="font-size:0.5em">' + key + "- </strong>";
+          '<div><span style="font-size:0.5em">' + key + "- </span>";
         meaningContent += dataSource[currentIndex][key] + "</div>";
       }
     }

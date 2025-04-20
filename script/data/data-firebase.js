@@ -33,12 +33,24 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firestore and get a reference to the service
 const db = getFirestore(app);
 
-export async function getWordList() {
+export async function getWordList({ category, status } = {}) {
   const wordListCollection = collection(db, "vocabulary");
-  const q = query(wordListCollection, orderBy("index"));
+
+  // Xây dựng mảng các điều kiện where
+  const conditions = [];
+  if (category) {
+    conditions.push(where("category", "==", category));
+  }
+  if (status) {
+    conditions.push(where("status", "==", status));
+  }
+
+  // Tạo query có thể bao gồm các điều kiện
+  const q = query(wordListCollection, ...conditions, orderBy("index"));
+
   const wordListSnapshot = await getDocs(q);
   const desiredOrder = tables.vocabList.map(field => field.name);
- 
+
   const wordList = wordListSnapshot.docs.map((doc) => {
     const data = doc.data();
     const ordered = {};
@@ -47,8 +59,26 @@ export async function getWordList() {
     }
     return ordered;
   });
+
   return wordList;
 }
+
+// export async function getWordList() {
+//   const wordListCollection = collection(db, "vocabulary");
+//   const q = query(wordListCollection, orderBy("index"));
+//   const wordListSnapshot = await getDocs(q);
+//   const desiredOrder = tables.vocabList.map(field => field.name);
+ 
+//   const wordList = wordListSnapshot.docs.map((doc) => {
+//     const data = doc.data();
+//     const ordered = {};
+//     for (const key of desiredOrder) {
+//       if (key in data) ordered[key] = data[key];
+//     }
+//     return ordered;
+//   });
+//   return wordList;
+// }
 
 export async function addWordList(words) {
   const q = query(
@@ -90,16 +120,19 @@ export async function deleteWord(word) {
  * @param {*} newValue - Giá trị mới của field
  */
 export async function updateWordByIndex(index, fieldName, newValue) {
+  console.log(fieldName, newValue, index);
   try {
     const q = query(collection(db, "vocabulary"), where("index", "==", index));
     const snapshot = await getDocs(q);
-
+    
     if (snapshot.empty) {
       console.warn(`Không tìm thấy từ có index = ${index}`);
       return;
     }
 
     const docRef = snapshot.docs[0].ref; // Giả sử index là duy nhất
+    
+    
     await updateDoc(docRef, {
       [fieldName]: newValue,
       updatedAt: new Date(), // Optional: tự động cập nhật thời gian sửa
@@ -107,4 +140,36 @@ export async function updateWordByIndex(index, fieldName, newValue) {
   } catch (error) {
     console.error("Lỗi khi cập nhật:", error);
   }
+}
+
+export async function loadCategories() {
+  const vocabRef = collection(db, "vocabulary");
+  const snapshot = await getDocs(vocabRef);
+
+  const categoryMap = new Map();
+
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    const cat = data.category || "Khác";
+    if (!categoryMap.has(cat)) categoryMap.set(cat, []);
+    categoryMap.get(cat).push(data.word);
+  });
+  return categoryMap;
+}
+
+export async function loadStatus() {
+  const vocabRef = collection(db, "vocabulary");
+  const snapshot = await getDocs(vocabRef);
+
+  const statusMap = new Map();
+
+  snapshot.forEach(doc => {
+    const data = doc.data();
+
+    const status = data.status || "new";
+    if (!statusMap.has(status)) statusMap.set(status, []);
+    statusMap.get(status).push(data.word);
+  });
+
+  return statusMap;
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Danh sách các nhóm từ</title>
+  <link rel="stylesheet" href="./style/css/category.css" />
+</head>
+<body>
+    <nav>
+        <ul id="nav">
+          <li>
+            <a href="form-add-vocab.html">Add</a>
+            <!-- <ul>
+              <li><a href="form-add-vocab.html">Add a vocabulary</a></li>
+              <li><a href="form-add-phrase.html">Add a phrase</a></li>
+              <li><a href="form-add-sentence.html">Add a sentence</a></li>
+            </ul> -->
+          </li>
+          <li>
+            <a href="list-vocab.html">Vocabs</a>
+            <!-- <ul>
+              <li><a href="list-vocab.html">Vocabularies</a></li>
+              <li><a href="list-phrase.html">Phrases</a></li>
+              <li><a href="list-sentence.html">Sentences</a></li>
+            </ul> -->
+          </li>
+          <li><a href="./list-category.html">Category</a></li>
+        </ul>
+      </nav>
+  <div class="container">
+    <h1>📚 Danh sách nhóm từ</h1>
+    <div id="category-list" class="card-grid"></div>
+    <h1 style="margin-top: 40px;">🧠 Danh sách từ cần ôn tập</h1>
+    <div id="status-list" class="card-grid"></div>
+  </div>
+
+  <script type="module" src="./script/pages/list-category.js"></script>
+</body>
+</html>

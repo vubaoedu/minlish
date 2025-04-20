@@ -14,11 +14,23 @@ function test() {
 }
 
 function main() {
- 
-    getWordList()
+    const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+
+  const category = params.get("category");
+  const status = params.get("status");
+
+  if (status) {
+    const select = document.getElementById("status");
+    select.value = status;
+  }
+
+  let param = {category, status};
+
+    getWordList(param)
     .then((vocabList) => {
         createSearch('search-input', 'suggestions-list', 'word', vocabList, render, 'word');
-        createFilter('status', vocabList, render);
+        createFilter('status', status?status:'all', category, vocabList, render);
         createLearnBtn('vocabList');
         createList('vocabList', vocabList, ['word', 'meaning', 'pronunciation', 'wordType'], 'form-add-vocab');
         render(null, null);

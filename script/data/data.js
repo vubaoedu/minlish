@@ -79,14 +79,16 @@ export async function loadData(dataName) {
 }
 
 export function getData(key, filter = null) {
+  console.log(filter);
   if (key in data) {
     if (filter) {
       const returnData = data[key].filter((item) => {
         for (const criteria in filter) {
-          if (filter[criteria].toString().toLowerCase() == "all") continue;
+          // console.log(criteria);
+          const value = filter[criteria].toString().toLowerCase()
+          if (value == "all" || value == "null") continue;
           if (
-            filter[criteria].toString().toLowerCase() !=
-            item[criteria].toString().toLowerCase()
+            value != item[criteria].toString().toLowerCase()
           )
             return false;
         }

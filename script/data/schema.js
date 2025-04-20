@@ -11,6 +11,7 @@ export const tables = {
         { name: 'relatedWord', type: 'string', inUI: true},
         { name: 'category', type: 'string', inUI: true},
         { name: 'status', type: 'string',  inUI: false},
+        { name: 'index', type: 'string',  inUI: false},
         { name: 'createdAt', type: 'date',  inUI: false},
         { name: 'updatedAt', type: 'date',  inUI: false},
     ],

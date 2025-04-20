@@ -57,7 +57,7 @@ export function render(search = null, filter = null) {
 
         const li = createItemElement(itemShow, [
             {text: 'Delete', handler: handleDeleteItem},
-            {text: 'Update', handler: handleUpdateItem},
+            //{text: 'Update', handler: handleUpdateItem},
             {text: 'Detail', handler: handleDetailItem}
         ]);
 
