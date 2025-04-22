@@ -10,16 +10,27 @@ main {
     #main-content {
         font-size: 2em;
         margin: 0;
+        
     }
     #sub-content {
         font-size: 1.2em;
         margin: 0;
     }
     #meaning-content {
+        font-size: 1.2em;
         line-height: 2em;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2em;
+        // display: flex;
+        // flex-wrap: wrap;
+        // gap: 2em;
+    }
+
+    .imgURL {
+        float: left;
+        width: 50%;
+        height: 150px;
+        background-position: center;
+        background-size: cover;
+        margin-right: 20px;
     }
 }
 

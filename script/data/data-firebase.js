@@ -17,6 +17,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { tables } from "./schema.js";
 
+const accessKey = 'N4gTD5AS9xdfRTjYWW8cgdHGI0Q99PKJIBpJqNgbeBM';  // Lấy API key từ Unsplash
+
 const firebaseConfig = {
   apiKey: "AIzaSyDXJ61nJN7prPofha4wnS0UEu-67T8l0yQ",
   authDomain: "minlish-3d325.firebaseapp.com",
@@ -80,6 +82,31 @@ export async function getWordList({ category, status } = {}) {
 //   return wordList;
 // }
 
+async function getImageFromUnsplash(word) {
+  const query = encodeURIComponent(word);
+  const apiUrl = `https://api.unsplash.com/search/photos?query=${query}&client_id=${accessKey}&per_page=1`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (data.results && data.results.length > 0) {
+      return data.results[0].urls.regular;
+    } else {
+      console.warn("No image found for:", word);
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching the image:", error);
+    return null;
+  }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 export async function addWordList(words) {
   const q = query(
     collection(db, "vocabulary"),
@@ -91,13 +118,18 @@ export async function addWordList(words) {
   if (!snapshot.empty) {
     currentIndex = snapshot.docs[0].data().index + 1; // Max index
   }
+  
 
   for (const w of words) {
+    const imgURL = await getImageFromUnsplash(w.word);
+    console.log(w, imgURL);
     await addDoc(collection(db, "vocabulary"), {
       ...w,
+      imgURL: imgURL,
       index: currentIndex,
     });
     currentIndex++;
+    await sleep(500);
   }
 
   return 1;

@@ -60,7 +60,6 @@ input[type=button], .confirm-btn-green {
   border-radius: 3px;
   font-size: 16px;
   cursor: pointer;
-  float: right;
 }
 
 input[type=button]:hover, .confirm-btn-green:hover {

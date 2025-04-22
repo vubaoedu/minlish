@@ -56,7 +56,19 @@ body {
             }
         }
         li {
-
+            position: relative;
+            .imgURL {
+                width: 30%;
+                min-width: 200px;
+                height: 60%;
+                background-position: center;
+                background-size: cover;
+                float: right;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                border-radius: 5px;
+            }
             div {
                 margin-bottom: 1rem;
             }

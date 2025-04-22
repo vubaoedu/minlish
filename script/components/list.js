@@ -12,6 +12,7 @@ const state = {
 };
 
 export function createList(idListElement, dataSource = null, keyShow = [], page = '') {
+    console.log(dataSource);
     idElements.idListElement = idListElement;
     state.dataSource = dataSource;
     state.keyShow = keyShow;
@@ -79,10 +80,18 @@ function createItemElement(item, actions = []) {
     const li = document.createElement('li');
 
     for (let id in item) {
-        const div = document.createElement('div');
-        div.classList.add(id);
-        div.innerHTML = item[id];
-        li.appendChild(div);
+        const element = document.createElement('div');
+        element.classList.add(id);
+
+        let elementName = id == 'imgURL' ? 'img' : 'div';
+        if (elementName == 'div') {
+            element.innerHTML = item[id];
+        }
+        else {
+            element.style.backgroundImage = `url(${item[id]})`;
+            // element.src = item[id];
+        }
+        li.appendChild(element);
     }
 
     for (let action of actions) {

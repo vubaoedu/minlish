@@ -15,6 +15,7 @@ ul {
 
 a {
   text-decoration: none;
+  color: #007bff;
 }
 
 h1 {
@@ -45,7 +46,13 @@ textarea {
   color: rgb(255, 76, 112);
 }
 
-input[type=button] {
+div::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+input[type=button], .confirm-btn-green {
   background-color: #007bff;
   color: white;
   border: none;
@@ -55,7 +62,7 @@ input[type=button] {
   cursor: pointer;
 }
 
-input[type=button]:hover {
+input[type=button]:hover, .confirm-btn-green:hover {
   background-color: #0062cc;
 }
 
@@ -174,11 +181,24 @@ body {
   color: #007bff;
 }
 .container ul li {
+  position: relative;
   background-color: #f8f9fa;
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 10px;
   overflow: auto;
+}
+.container ul li .imgURL {
+  width: 30%;
+  min-width: 200px;
+  height: 60%;
+  background-position: center;
+  background-size: cover;
+  float: right;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 5px;
 }
 .container ul li div {
   margin-bottom: 1rem;

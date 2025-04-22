@@ -186,6 +186,7 @@ function show(dataName, showMeaing = false) {
         "example",
         "collocation",
         "relatedWord",
+        "imgURL",
       ];
 
       showContent("word", keySub, showMeaing);
@@ -240,16 +241,32 @@ function showContent(keyMain, keySub = [], showMeaning = false) {
   const meaningContentElement = getElement("meaning-content");
   mainContentElement.innerHTML = dataSource[currentIndex][keyMain];
   subContentElement.innerHTML = "";
+  const imgDivElement = document.createElement('div');
+  // console.log(dataSource[currentIndex]['imgURL']);
   if (showMeaning) {
     let meaningContent = "";
     for (const key of keySub) {
       if (dataSource[currentIndex][key] != "") {
-        meaningContent +=
-          '<div><span style="font-size:0.5em">' + key + "- </span>";
-        meaningContent += dataSource[currentIndex][key] + "</div>";
+        if (key == 'imgURL') {
+          console.log('hi');
+          imgDivElement.className = key;
+          imgDivElement.style.backgroundImage = `url("${dataSource[currentIndex][key]}")`;
+
+          // meaningContent +=
+          // '<div class="imgURL"></div>';
+        }
+        else {
+          meaningContent +=
+          '<span style="font-size:0.6em">' + key + "- </span>";
+          meaningContent += dataSource[currentIndex][key] + '<br>';
+        }
       }
     }
+    // meaningContent += '</div>'
     meaningContentElement.innerHTML = meaningContent;
+    // meaningContentElement.appendChild(imgDivElement);
+    meaningContentElement.insertBefore(imgDivElement, meaningContentElement.firstChild);
+    // meaningContentElement.getElementsByClassName('imgURL')[0].style.backgroundImage = dataSource[currentIndex]['imgURL'];
   } else meaningContentElement.innerHTML = "";
 
   //   speak(dataSource[currentIndex][keyMain]);

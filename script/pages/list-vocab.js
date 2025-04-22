@@ -32,10 +32,15 @@ function main() {
         createSearch('search-input', 'suggestions-list', 'word', vocabList, render, 'word');
         createFilter('status', status?status:'all', category, vocabList, render);
         createLearnBtn('vocabList');
-        createList('vocabList', vocabList, ['word', 'meaning', 'pronunciation', 'wordType'], 'form-add-vocab');
+        createList('vocabList', vocabList, ['word', 'meaning', 'pronunciation', 'wordType', 'imgURL'], 'form-add-vocab');
         render(null, null);
         
         // window.addEventListener("unload", () => saveData('vocabList'));
+
+        const exportBtn = document.getElementById('export-to-excel');
+        exportBtn.addEventListener('click', () => {
+            exportToExcel(vocabList)
+        });
     })
     .catch((error) => {
     console.error("Error getting words: ", error);
@@ -50,4 +55,12 @@ function main() {
     // render(null, null);
     
     // window.addEventListener("unload", () => saveData('vocabList'));
+}
+
+function exportToExcel(vocabList, fileName = 'vocab_list.xlsx') {
+    const worksheet = XLSX.utils.json_to_sheet(vocabList);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "VocabList");
+  
+    XLSX.writeFile(workbook, fileName);
 }
