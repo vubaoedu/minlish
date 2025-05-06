@@ -59,13 +59,18 @@ async function main() {
   
     if (state.autoPlay == true) {
       show(dataName, true);
+      const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
       const meaning = state.dataSource[state.currentIndex]["meaning"];
       const example = state.dataSource[state.currentIndex]["example"];
-      textToSpeak = [
-        ...textToSpeak,
-        { text: meaning, lang: "vi-VN" },
-        { text: example, lang: "en-US" },
-      ];
+      if (!isMobile) {
+        textToSpeak.push({ text: meaning, lang: "vi-VN" });
+      }
+      textToSpeak.push({ text: example, lang: "en-US" });
+      // textToSpeak = [
+      //   ...textToSpeak,
+      //   { text: meaning, lang: "vi-VN" },
+      //   { text: example, lang: "en-US" },
+      // ];
     }
   
     await speakSequence(textToSpeak);         // chờ đọc xong
