@@ -61,11 +61,11 @@ async function main() {
       show(dataName, true);
       const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
       const meaning = state.dataSource[state.currentIndex]["meaning"];
-      const example = state.dataSource[state.currentIndex]["example"];
+      // const example = state.dataSource[state.currentIndex]["example"];
       if (!isMobile) {
         textToSpeak.push({ text: meaning, lang: "vi-VN" });
       }
-      textToSpeak.push({ text: example, lang: "en-US" });
+      // textToSpeak.push({ text: example, lang: "en-US" });
       // textToSpeak = [
       //   ...textToSpeak,
       //   { text: meaning, lang: "vi-VN" },
@@ -74,7 +74,7 @@ async function main() {
     }
   
     await speakSequence(textToSpeak);         // chờ đọc xong
-    await new Promise(r => setTimeout(r, 3000)); // đợi thêm 3 giây
+    await new Promise(r => setTimeout(r, 10000)); // đợi thêm 10 giây
   }
   
 
