@@ -16,6 +16,8 @@ export function normalizeVocabList(jsonData, vocabList) {
     vocabList.forEach(({ name, type }) => {
       let value = item[name];
 
+      
+
       if (value === undefined || value === null || value === "") {
         // Gán giá trị mặc định nếu thiếu
         switch (type) {
@@ -43,6 +45,7 @@ export function normalizeVocabList(jsonData, vocabList) {
             break;
           case "string":
             value = String(value).trim();
+            value = value.replace(/\n/g, "<br>");
             break;
         }
       }
