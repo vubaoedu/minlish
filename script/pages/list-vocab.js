@@ -32,7 +32,7 @@ function main() {
         createSearch('search-input', 'suggestions-list', 'word', vocabList, render, 'word');
         createFilter('status', status?status:'all', category, vocabList, render);
         createLearnBtn('vocabList');
-        createList('vocabList', vocabList, ['word', 'meaning', 'pronunciation', 'wordType', 'imgURL'], 'form-add-vocab');
+        createList('vocabList', vocabList, ['word', 'meaning', 'pronunciation', 'wordType', 'description', 'example', 'collocation'], 'form-add-vocab');
         render(null, null);
         
         // window.addEventListener("unload", () => saveData('vocabList'));
