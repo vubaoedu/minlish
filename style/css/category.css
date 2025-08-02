@@ -4,7 +4,7 @@
 }
 
 body {
-  max-width: 600px;
+  max-width: 1200px;
   font-family: "Roboto", sans-serif;
   margin: 0 auto;
 }
@@ -68,6 +68,9 @@ input[type=button]:hover, .confirm-btn-green:hover {
 
 nav {
   padding: 10px;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 #nav {

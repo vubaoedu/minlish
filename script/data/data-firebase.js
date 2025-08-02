@@ -211,3 +211,20 @@ export async function loadStatus() {
 
   return statusMap;
 }
+
+
+// async function updateAllStatusToYear() {
+//   const snapshot = await getDocs(collection(db, "vocabulary"));
+
+//   const promises = [];
+
+//   snapshot.forEach((docSnap) => {
+//     const docRef = doc(db, "vocabulary", docSnap.id);
+//     promises.push(updateDoc(docRef, { status: "year" }));
+//   });
+
+//   await Promise.all(promises);
+//   console.log("Đã cập nhật tất cả status thành 'year'");
+// }
+
+// updateAllStatusToYear();

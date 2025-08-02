@@ -114,18 +114,19 @@ async function main() {
 
         const forgetBtn = getElement("forget");
         forgetBtn.addEventListener("click", () => {
-          let newStaus = state.dataSource[state.currentIndex].status;
-          const statusValueDomain = valueDomain["status"];
-          let index = -1;
-          for (let i = 0; i < statusValueDomain.length; i++) {
-            if (statusValueDomain[i] == newStaus) {
-              index = i;
-              break;
-            }
-          }
-          if (index > 0) {
-            newStaus = statusValueDomain[index - 1];
-          }
+          let newStaus = "new"
+          // let newStaus = state.dataSource[state.currentIndex].status;
+          // const statusValueDomain = valueDomain["status"];
+          // let index = -1;
+          // for (let i = 0; i < statusValueDomain.length; i++) {
+          //   if (statusValueDomain[i] == newStaus) {
+          //     index = i;
+          //     break;
+          //   }
+          // }
+          // if (index > 0) {
+          //   newStaus = statusValueDomain[index - 1];
+          // }
           state.dataSource[state.currentIndex].status = newStaus;
           const indexToUpdate = state.dataSource[state.currentIndex].index
         
