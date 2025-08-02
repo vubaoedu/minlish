@@ -214,6 +214,9 @@ function speakSequence(texts) {
 
     let index = 0;
 
+    // Đảm bảo lấy danh sách voice trước khi nói
+    const voices = speechSynthesis.getVoices();
+
     function speakNext() {
       if (index >= texts.length) {
         resolve(); // đọc xong hết thì resolve
@@ -225,6 +228,14 @@ function speakSequence(texts) {
       utterance.lang = lang;
       utterance.rate = 1;
 
+      // 👉 Gán đúng voice theo lang
+      const voice = voices.find(v => v.lang === lang);
+      if (voice) {
+        utterance.voice = voice;
+      } else {
+        console.warn("Không tìm thấy voice cho lang:", lang);
+      }
+
       utterance.onend = () => {
         index++;
         speakNext();
@@ -233,8 +244,17 @@ function speakSequence(texts) {
       speechSynthesis.speak(utterance);
     }
 
-    speechSynthesis.cancel();
-    speakNext();
+    // speechSynthesis.cancel();
+    // speakNext();
+
+    // Đợi voice load nếu chưa có
+    if (voices.length === 0) {
+      speechSynthesis.onvoiceschanged = () => {
+        speakNext();
+      };
+    } else {
+      speakNext();
+    }
   });
 }
 
