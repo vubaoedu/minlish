@@ -39,9 +39,12 @@ main {
     display: flex;
     justify-content: center;
     // gap: 1rem;
-    position: sticky;
+    position: fixed;
     width: 100%;
+    max-width: 600px;
+    left: 50%;
     bottom: 5px;
+    transform: translate(-50%, 0);
     background-color: white;
     &.three {
         input {

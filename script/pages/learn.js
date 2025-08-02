@@ -62,7 +62,7 @@ async function main() {
       const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
       const meaning = state.dataSource[state.currentIndex]["meaning"];
       // const example = state.dataSource[state.currentIndex]["example"];
-      if (!isMobile) {
+      if (true) {
         textToSpeak.push({ text: meaning, lang: "vi-VN" });
       }
       // textToSpeak.push({ text: example, lang: "en-US" });
