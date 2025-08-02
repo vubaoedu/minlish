@@ -38,10 +38,21 @@ main {
     margin-bottom: 1rem;
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    // gap: 1rem;
+    position: sticky;
+    width: 100%;
+    bottom: 5px;
+    background-color: white;
     &.three {
         input {
             width: 33.3%;
+            background-color: white;
+            border: solid gray 1px;
+            border-right: none;
+            border-radius: 0;
+            :last-child {
+                border-right: solid gray 1px; 
+            }
         }
     }
     &.two {

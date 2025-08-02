@@ -68,6 +68,9 @@ input[type=button]:hover, .confirm-btn-green:hover {
 
 nav {
   padding: 10px;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 #nav {
@@ -161,10 +164,20 @@ main .imgURL {
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  position: sticky;
+  width: 100%;
+  bottom: 5px;
+  background-color: white;
 }
 .actions.three input {
   width: 33.3%;
+  background-color: white;
+  border: solid gray 1px;
+  border-right: none;
+  border-radius: 0;
+}
+.actions.three input :last-child {
+  border-right: solid gray 1px;
 }
 .actions.two input {
   width: 50%;

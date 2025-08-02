@@ -186,7 +186,13 @@ export async function loadCategories() {
     if (!categoryMap.has(cat)) categoryMap.set(cat, []);
     categoryMap.get(cat).push(data.word);
   });
-  return categoryMap;
+  // Sort the map by category name
+  const sortedCategoryMap = new Map(
+    [...categoryMap.entries()].sort(([a], [b]) => a.localeCompare(b))
+  );
+
+  return sortedCategoryMap;
+  // return categoryMap;
 }
 
 export async function loadStatus() {

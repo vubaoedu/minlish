@@ -186,11 +186,11 @@ function show(dataName, showMeaing = false) {
       const keySub = [
         "wordType",
         "pronunciation",
+        "collocation",
+        "relatedWord",
         "meaning",
         "note",
         "example",
-        "collocation",
-        "relatedWord",
         "imgURL",
       ];
 
@@ -262,7 +262,7 @@ function showContent(keyMain, keySub = [], showMeaning = false) {
         }
         else {
           meaningContent +=
-          '<span style="font-size:0.6em">' + key + "- </span>";
+          '<span style="font-size:0.6em; font-weight: bold; font-family: monospace">' + key + "- </span>";
           meaningContent += dataSource[currentIndex][key] + '<br>';
         }
       }
